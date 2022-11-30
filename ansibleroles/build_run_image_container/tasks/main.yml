@@ -1,0 +1,7 @@
+---
+- name: tag and build docker image
+  shell: docker build -t "{{ name_of_image }}" .
+
+- name: run docker image as a container
+  shell: docker run --name "{{ name_of_container }}" -d -p "{{ host_port }}":"{{ listening_port }}" --ip 192.168.0.182 "{{ name_of_image }}"
+# tasks file for build_run_image_container

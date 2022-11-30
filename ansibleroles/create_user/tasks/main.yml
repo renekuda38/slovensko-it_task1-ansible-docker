@@ -1,0 +1,10 @@
+---
+- name: Add the user 'deploy'
+  ansible.builtin.user:
+        name: deploy
+        comment: DeployUser
+        uid: 1079
+        group: sudo
+        password: '$6$flmtEsw.YfqEcIxb$DA.55dHRVATzYxLTVY4U0hDUblWX45.OI6.3RYQrtcyacaswssi4cn7lBPhuB8sOIo2xJSsHWRQdodEhSYXM..'
+        createhome: yes       
+        home: /home/deploy     

@@ -1,0 +1,31 @@
+---
+# tasks file for dockerfile
+- name: Creating a file with content
+  copy:
+      dest: "/home/rene/Dockerfile"
+      content: |
+        FROM ubuntu
+        ENV DEBIAN_FRONTEND=noninteractive 
+        RUN apt-get update 
+        RUN apt-get install apache2 -y
+        RUN apt-get install apache2-utils -y 
+        RUN apt-get clean 
+        EXPOSE 80
+        CMD ["apache2ctl", "-D", "FOREGROUND"]
+
+- name: set passwordless sudo
+  lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%sudo'
+        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
+- name: create the docker group
+  shell: sudo groupadd docker
+
+- name: add user to the docker group
+  shell: sudo usermod -aG docker rene
+
+- name: verify that you can run docker commands without sudo
+  shell: docker run hello-world

@@ -1,0 +1,11 @@
+---
+- name: Ansible Create user
+  hosts: all 
+  become: true
+  remote_user: rene 
+
+  roles:
+    - create_user
+    - install_docker
+    - dockerfile
+    - build_run_image_container

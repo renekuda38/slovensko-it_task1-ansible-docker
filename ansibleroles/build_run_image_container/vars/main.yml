@@ -1,0 +1,6 @@
+---
+# vars file for dockerfile
+name_of_image: apache_image:1.0
+name_of_container: web_apache2
+listening_port: 80
+host_port: 80
